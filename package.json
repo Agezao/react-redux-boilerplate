@@ -4,7 +4,13 @@
   "description": "A react+redux boilerplate in ES6. With mocha tests and eslint.",
   "main": "index.js",
   "scripts": {
-    
+    "prestart": "babel-node tools/prestart.js",
+    "start": "npm-run-all --parallel open:src lint:watch test:watch",
+    "open:src": "babel-node tools/server.js",
+    "lint": "node_modules/.bin/esw webpack.config.* src tools",
+    "lint:watch": "npm run lint -- --watch",
+    "test": "mocha --reporter progress tools/test-setup.js \"src-tests/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
   },
   "keywords": [
     "react",
